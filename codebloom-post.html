@@ -1,0 +1,561 @@
+<div class="codebloom-post-body" data-theme="light">
+  <style>
+    /* Scope variables to the post container to prevent breaking your global Blogger theme styles */
+    .codebloom-post-body {
+      position: relative; 
+      overflow: hidden;   
+      
+      --text-xs: clamp(0.68rem, 0.62rem + 0.2vw, 0.78rem);
+      --text-sm: clamp(0.78rem, 0.72rem + 0.2vw, 0.88rem);
+      --text-base: clamp(0.9rem, 0.85rem + 0.2vw, 1.0rem);
+      --text-lg: clamp(1.05rem, 1.0rem + 0.25vw, 1.18rem);
+      --text-xl: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+      --text-2xl: clamp(1.5rem, 1.35rem + 0.8vw, 2.1rem); 
+      --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem;
+      --color-bg: #fcf7f4;
+      --color-surface: #fffdfb;
+      --color-surface-2: #fff7fb;
+      --color-surface-offset: #f6f0ff;
+      --color-surface-dynamic: #f1eee9;
+      --color-border: #e8dfdc;
+      --color-divider: #efe7e3;
+      --color-text: #2f2430;
+      --color-text-muted: #786d7b;
+      --color-text-faint: #b4aab5;
+      --color-text-inverse: #fffaf7;
+      --color-primary: #b86fd8;
+      --color-primary-hover: #a558c7;
+      --color-success: #6fd6c2;
+      --color-orange: #f7c35f;
+      --color-blue: #7e9cff;
+      --color-pink: #f48db8;
+      --radius-sm: .5rem; --radius-md: .85rem; --radius-lg: 1.2rem; --radius-xl: 1.6rem; --radius-full: 9999px;
+      --shadow-sm: 0 2px 10px rgba(98,68,100,.06);
+      --shadow-md: 0 10px 30px rgba(98,68,100,.08);
+      --shadow-lg: 0 18px 50px rgba(98,68,100,.12);
+      --transition-interactive: 180ms cubic-bezier(0.16,1,0.3,1);
+      --font-display: 'Baloo 2', cursive;
+      --font-body: 'Nunito', sans-serif;
+      --content-default: 100%;
+      
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: 1.6;
+      background: radial-gradient(circle at top, rgba(244,141,184,.12), transparent 32%), radial-gradient(circle at right top, rgba(111,214,194,.16), transparent 28%), var(--color-bg);
+      color: var(--color-text);
+      padding: var(--space-4);
+      border-radius: var(--radius-xl);
+      box-sizing: border-box;
+    }
+
+    .codebloom-post-body [data-theme="dark"],
+    .codebloom-post-body[data-theme="dark"] {
+      --color-bg: #1d1820;
+      --color-surface: #261f2a;
+      --color-surface-2: #2d2430;
+      --color-surface-offset: #32293a;
+      --color-surface-dynamic: #3a3040;
+      --color-border: #4b3f52;
+      --color-divider: #433849;
+      --color-text: #f7eff8;
+      --color-text-muted: #c1b6c4;
+      --color-text-faint: #8d8090;
+      --color-text-inverse: #211b25;
+      --color-primary: #d48ff2;
+      --color-primary-hover: #c57ce5;
+      --color-success: #6bd8bf;
+      --color-orange: #ffd166;
+      --color-blue: #93a9ff;
+      --color-pink: #ff9fc6;
+      --shadow-sm: 0 2px 12px rgba(0,0,0,.22);
+      --shadow-md: 0 10px 30px rgba(0,0,0,.25);
+      --shadow-lg: 0 18px 50px rgba(0,0,0,.35);
+    }
+
+    /* Target resetting rules only within our component post content scope */
+    .codebloom-post-body *, 
+    .codebloom-post-body *::before, 
+    .codebloom-post-body *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      overflow-wrap: break-word; 
+      word-break: break-word;
+    }
+    
+    .codebloom-post-body img, 
+    .codebloom-post-body svg {
+      display: inline-block;
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .codebloom-post-body button, 
+    .codebloom-post-body a, 
+    .codebloom-post-body input, 
+    .codebloom-post-body textarea {
+      font: inherit;
+      color: inherit;
+    }
+    
+    .codebloom-post-body a {
+      text-decoration: none;
+    }
+    
+    .codebloom-post-body button {
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+    
+    .codebloom-post-body :focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+    }
+
+    .codebloom-post-body .container {
+      width: 100%;
+      margin-inline: auto;
+    }
+    
+    .codebloom-post-body .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: .35rem .8rem;
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: 800;
+      letter-spacing:.04em;
+      text-transform: uppercase;
+      background: rgba(184,111,216,.12);
+      color: var(--color-primary);
+    }
+    
+    .codebloom-post-body header {
+      z-index: 30;
+      background: color-mix(in srgb, var(--color-bg) 86%, transparent);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--color-divider);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    
+    .codebloom-post-body .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-4);
+      gap: var(--space-4);
+    }
+    
+    .codebloom-post-body .brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 800;
+    }
+    
+    .codebloom-post-body .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg,var(--color-primary),var(--color-pink));
+      display: grid;
+      place-items: center;
+      color: white;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .codebloom-post-body .brand-mark svg {
+      width: 22px;
+      height: 22px;
+    }
+    
+    .codebloom-post-body .nav-links {
+      display: flex;
+      gap: var(--space-4);
+      align-items: center;
+      font-weight: 700;
+      color: var(--color-text-muted);
+    }
+    
+    .codebloom-post-body .nav-links a:hover {
+      color: var(--color-primary);
+    }
+    
+    .codebloom-post-body .theme-toggle, 
+    .codebloom-post-body .cta {
+      min-height: 40px;
+      padding: .6rem 1rem;
+      border-radius: var(--radius-full);
+      transition: all var(--transition-interactive);
+    }
+    
+    .codebloom-post-body .theme-toggle {
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .codebloom-post-body .cta {
+      background: var(--color-primary);
+      color: white !important;
+      font-weight: 800;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+    
+    .codebloom-post-body .cta:hover {
+      background: var(--color-primary-hover);
+      transform: translateY(-1px);
+    }
+    
+    .codebloom-post-body main {
+      padding: var(--space-6) var(--space-4) var(--space-12);
+    }
+    
+    .codebloom-post-body .hero {
+      display: grid;
+      grid-template-columns: 1.2fr .95fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+    
+    .codebloom-post-body .hero-copy,
+    .codebloom-post-body .hero-panel,
+    .codebloom-post-body .section-card,
+    .codebloom-post-body .lesson-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .codebloom-post-body .hero-copy {
+      padding: var(--space-6);
+    }
+    
+    .codebloom-post-body .hero-copy h1 {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      line-height: 1.2; 
+      margin: var(--space-4) 0;
+      color: var(--color-text);
+    }
+    
+    .codebloom-post-body .hero-copy h1 span {
+      color: var(--color-primary);
+    }
+    
+    .codebloom-post-body .hero-copy p {
+      max-width: 58ch;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-4);
+    }
+
+    /* AI CODE ASSISTANT BLOCK COMPONENT STYLES */
+    .codebloom-post-body .ai-wrapper {
+      margin-top: var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-surface);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .codebloom-post-body .ai-header {
+      background: var(--color-surface-offset);
+      padding: var(--space-3) var(--space-4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .codebloom-post-body .ai-title {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-weight: 800;
+      font-size: var(--text-sm);
+      color: var(--color-primary);
+    }
+    .codebloom-post-body .ai-body {
+      padding: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .codebloom-post-body .ai-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+    .codebloom-post-body .ai-chip {
+      background: var(--color-surface-dynamic);
+      border: 1px solid var(--color-border);
+      padding: .35rem .75rem;
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-interactive);
+    }
+    .codebloom-post-body .ai-chip:hover {
+      background: var(--color-primary);
+      color: white;
+      border-color: var(--color-primary);
+    }
+    .codebloom-post-body .ai-input-group {
+      display: flex;
+      gap: var(--space-2);
+    }
+    .codebloom-post-body .ai-input {
+      flex: 1;
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-2) var(--space-3);
+      font-size: var(--text-sm);
+      outline: none;
+      color: var(--color-text);
+    }
+    .codebloom-post-body .ai-input:focus {
+      border-color: var(--color-primary);
+    }
+    .codebloom-post-body .ai-btn {
+      background: var(--color-primary);
+      color: white;
+      padding: 0 var(--space-4);
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: var(--text-sm);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      cursor: pointer;
+    }
+    .codebloom-post-body .ai-btn:hover {
+      background: var(--color-primary-hover);
+    }
+    .codebloom-post-body .ai-output-box {
+      background: #20162a;
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      display: none;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .codebloom-post-body .ai-output-box.active {
+      display: flex;
+    }
+    .codebloom-post-body .ai-code-display {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: var(--text-sm);
+      color: #faf8ff;
+      white-space: pre-wrap;
+      max-height: 200px;
+      overflow-y: auto;
+      line-height: 1.4;
+    }
+
+    .codebloom-post-body .hero-panel {
+      padding: var(--space-5);
+      display: grid;
+      gap: var(--space-4);
+      background: linear-gradient(180deg,var(--color-surface),var(--color-surface-2));
+    }
+    
+    .codebloom-post-body .browser-top {
+      display: flex;
+      gap: .45rem;
+      padding-bottom: var(--space-1);
+    }
+    
+    .codebloom-post-body .browser-top i {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    
+    .codebloom-post-body .browser-top i:nth-child(1){background:var(--color-pink)} 
+    .codebloom-post-body .browser-top i:nth-child(2){background:var(--color-orange)} 
+    .codebloom-post-body .browser-top i:nth-child(3){background:var(--color-success)}
+
+    .codebloom-post-body .code-window {
+      padding: var(--space-4);
+      border-radius: var(--radius-lg);
+      background: #20162a;
+      color: #faf8ff;
+      font-family: ui-monospace,SFMono-Regular,Menlo,monospace;
+      font-size: var(--text-sm);
+      overflow-x: auto;
+    }
+
+    /* Blogger Post Content Breakpoints (Fluid Design) */
+    @media (max-width: 980px){
+      .codebloom-post-body .hero { grid-template-columns: 1fr; }
+      .codebloom-post-body .nav-links { display: none; }
+    }
+    @media (max-width: 700px) {
+      .codebloom-post-body main { padding-top: var(--space-4); }
+      .codebloom-post-body .hero-copy,
+      .codebloom-post-body .hero-panel { padding: var(--space-4); }
+      .codebloom-post-body .nav { flex-wrap: wrap; }
+    }
+    @media (max-width: 520px) {
+      .codebloom-post-body .ai-input-group { flex-direction: column; }
+      .codebloom-post-body .ai-btn { padding: var(--space-2); justify-content: center; }
+    }
+  </style>
+
+  <header>
+    <div class="container nav">
+      <div class="brand" aria-label="CodeBloom home">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 7 3 12l5 5"/>
+            <path d="m16 7 5 5-5 5"/>
+            <path d="m14 4-4 16"/>
+          </svg>
+        </div>
+        <span>CodeBloom</span>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#topics">Topics</a>
+        <a href="#paths">Paths</a>
+        <a href="#playground">Playground</a>
+      </nav>
+      <div style="display:flex;gap:.75rem;align-items:center;">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a class="cta" href="#paths">Start learning</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="container hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <span class="pill">Active Environment</span>
+        <h1 id="hero-title">Learn coding with <span>playful cards</span> and visual lessons.</h1>
+        <p>CodeBloom turns complex coding setups into interactive dashboard layouts. Use the built-in sandbox assistant block underneath to build algorithms inside your browser frame perfectly.</p>
+
+        <div class="ai-wrapper">
+          <div class="ai-header">
+            <div class="ai-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+              <span>CodeBloom AI Assistant</span>
+            </div>
+            <span class="pill purple" style="font-size:10px; padding: 2px 8px;">Online</span>
+          </div>
+          <div class="ai-body">
+            <div class="ai-chips">
+              <button type="button" class="ai-chip" data-prompt="Fix bugs inside code block loop handles">🐛 Fix Bug</button>
+              <button type="button" class="ai-chip" data-prompt="Explain variable scopes within this dynamic theme function structure">💡 Explain Code</button>
+              <button type="button" class="ai-chip" data-prompt="Optimize array processing operations filter logic">⚡ Optimize Loop</button>
+            </div>
+            <div class="ai-input-group">
+              <input type="text" class="ai-input" id="aiInputField" placeholder="Ask AI code assistant to draft setups...">
+              <button type="button" class="ai-btn" id="aiSubmitBtn">
+                <span>Ask</span>
+              </button>
+            </div>
+            <div class="ai-output-box" id="aiOutputContainer">
+              <div class="ai-code-display" id="aiOutputText"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="browser-top">
+          <i></i><i></i><i></i>
+        </div>
+        <div class="panel-lesson">
+          <h3>Active Interactive Workspace</h3>
+          <p style="font-size:var(--text-sm);">Edit or request updates directly from your left panel tools window ecosystem layout context panels directly.</p>
+        </div>
+        <div class="code-window">
+          <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"codebloom"</span><span class="tag">&gt;</span><br>
+          &nbsp;&nbsp;<span class="tag">&lt;span&gt;</span>Active Project Instance Loaded Successfully<span class="tag">&lt;/span&gt;</span><br>
+          <span class="tag">&lt;/div&gt;</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Setup dynamic toggle switcher engine settings 
+      const toggle = document.querySelector('[data-theme-toggle]');
+      const container = document.querySelector('.codebloom-post-body');
+      
+      if(toggle && container) {
+        toggle.addEventListener('click', () => {
+          const currentTheme = container.getAttribute('data-theme');
+          container.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+        });
+      }
+
+      // AI Logic simulation scripts 
+      const chips = document.querySelectorAll('.ai-chip');
+      const inputField = document.getElementById('aiInputField');
+      const submitBtn = document.getElementById('aiSubmitBtn');
+      const outputContainer = document.getElementById('aiOutputContainer');
+      const outputText = document.getElementById('aiOutputText');
+
+      const presetResponses = {
+        bug: "/* AI Fix Applied successfully */\nfunction optimizedGuard() {\n  if (!instance) return false;\n  console.log('Error states audited & resolved.');\n}",
+        explain: "// AI Explanation:\n// Variables starting with -- are scoped custom property tokens.\n// Setting them within container selectors protects parent rules from bleeding.",
+        optimize: "/* Optimized execution loop profile */\nconst targetItems = activeData.filter(item => !!item.isValid);"
+      };
+
+      function triggerAIResponse(promptText) {
+        outputContainer.classList.add('active');
+        outputText.textContent = "Analyzing query requests context parameters...";
+        
+        let selectedResponse = `// Prompt Processed: "${promptText}"\n\n// CodeBloom generated mock structural parameters:\nfunction customSetup() {\n  console.log("Custom script layout generated cleanly.");\n}`;
+        
+        if(promptText.toLowerCase().includes('bug')) selectedResponse = presetResponses.bug;
+        if(promptText.toLowerCase().includes('explain')) selectedResponse = presetResponses.explain;
+        if(promptText.toLowerCase().includes('optimize')) selectedResponse = presetResponses.optimize;
+
+        let index = 0;
+        outputText.textContent = "";
+        
+        // Simulating artificial output typing generation streams accurately 
+        const interval = setInterval(() => {
+          if (index < selectedResponse.length) {
+            outputText.textContent += selectedResponse.charAt(index);
+            index++;
+            outputContainer.scrollTop = outputContainer.scrollHeight;
+          } else {
+            clearInterval(interval);
+          }
+        }, 15);
+      }
+
+      chips.forEach(chip => {
+        chip.addEventListener('click', function() {
+          const prompt = this.getAttribute('data-prompt');
+          inputField.value = prompt;
+          triggerAIResponse(prompt);
+        });
+      });
+
+      if(submitBtn) {
+        submitBtn.addEventListener('click', () => {
+          if(inputField.value.trim() !== "") {
+            triggerAIResponse(inputField.value);
+          }
+        });
+      }
+    });
+  </script>
+</div>
